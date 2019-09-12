@@ -30,6 +30,17 @@ func main() {
 	//
 	//waitg.Wait()
 	//fmt.Println(cnt)
+	var sm sync.Map
+	sm.Store("key","v")
+	sm.Store("key1","v")
+	sm.Store("key2","v")
+	sm.Range(func(key, value interface{}) bool {
+		sm.Delete(key)
+		return true
+	})
+	v , b :=  sm.Load("key")
+	fmt.Println(v)
+	fmt.Println(b)
 }
 
 func addForAtomic() {
