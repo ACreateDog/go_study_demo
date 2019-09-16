@@ -1,9 +1,9 @@
 package main
 
 import (
-	"os"
 	"fmt"
 	"io/ioutil"
+	"os"
 )
 
 const FileName  = "/Users/wangfei/work/demo/tmp/tmp.txt"
@@ -52,7 +52,7 @@ func osOpen() {
 	fd , err :=  os.Open(FileName)
 
 	fmt.Printf("%+v\n" , fd)
-	if err != nil {
+	if err != nil {z
 		fmt.Printf("open is error is %v \n" , err)
 		return
 	}
@@ -65,5 +65,6 @@ func osOpen() {
 	fmt.Printf("\n%+v\n" , string(buf[:n]))
 	fmt.Println(n)
 }
+func ioCloser() {
 
-
+}

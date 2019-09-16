@@ -1,10 +1,9 @@
 package main
 
 import (
-	"encoding/json"
-
-	"fmt"
 	"bytes"
+	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -59,7 +58,8 @@ type Foo struct {
 	Attr1Struct interface{} `json:"attr1Struct"`
 }
 func main() {
-	fooCopy()
+	//fooCopy()
+	nullJson()
 }
 func person() {
 	var p Person
@@ -116,3 +116,13 @@ func foo() {
 //	}
 //	return false
 //}
+
+//如果是空map转化成json，将变成{}
+func nullJson() {
+	var a = make(map[string]interface{})
+	jsonStr , err  := json.Marshal(a)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	fmt.Println(string(jsonStr))
+}
