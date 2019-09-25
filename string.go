@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 func main()  {
 	str := `
@@ -10,4 +14,24 @@ func main()  {
 	哈哈哈
 `
 	fmt.Println(str)
+	foo()
+}
+func foo() {
+	str := "    hello  d   "
+
+	str =  strings.Trim(str , " ")
+	fmt.Println(str)
+	f()
+}
+
+type User struct {
+	Name string `json:"name"`
+}
+func f()  {
+	var u User
+	err :=  json.Unmarshal([]byte{} , &u)
+
+	if err != nil {
+		fmt.Printf("error=%+v",err)
+	}
 }

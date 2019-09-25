@@ -68,3 +68,6 @@ func osOpen() {
 func ioCloser() {
 
 }
+func io() {
+
+}
