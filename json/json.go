@@ -59,7 +59,25 @@ type Foo struct {
 }
 func main() {
 	//fooCopy()
-	nullJson()
+	//nullJson()
+	//zoreJons()
+	jsonS()
+}
+
+func zoreJons() {
+	var m   = make(map[string]interface{})
+	m["deviceType"] = 0
+	bts , _ := json.Marshal(m)
+	fmt.Println(string(bts))
+}
+func jsonS()  {
+	var a =  []Person{}
+	bys , err := json.Marshal(a)
+	if err != nil {
+
+	}
+
+	fmt.Println(string(bys))
 }
 func person() {
 	var p Person
