@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"time"
 )
 
 func main()  {
@@ -14,13 +15,29 @@ func main()  {
 	哈哈哈
 `
 	fmt.Println(str)
-	foo()
+
+	type errorParam struct {
+		RobotID   string
+		ErrorCode int
+		ErrorMsg  string
+	}
+
+	var msg = errorParam{}
+
+	msg.RobotID = "6351"
+	msg.ErrorCode = 110
+	msg.ErrorMsg = "this is an error"
+
+	strParam, _ := json.Marshal(&msg)
+	fmt.Println(string(strParam))
+	//foo()
+	fmt.Println(time.Now().Unix())
 }
 func foo() {
 	str := "    hello  d   "
 
 	str =  strings.Trim(str , " ")
-	fmt.Println(str)
+	fmt.Println(string(str))
 	f()
 }
 

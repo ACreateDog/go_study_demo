@@ -40,7 +40,7 @@ func main() {
 	router.GET("/heartbeat" , handleHeartbeat)
 	router.GET("/vote/:voteTarget/:voteIndex" , vote )
 	router.GET("/ping" , ping)
-
+	go  heandleResetHeartbeatTime()
 	log.Fatal(http.ListenAndServe(currentAddress, router))
 }
 func vote(w http.ResponseWriter  , r * http.Request , ps httprouter.Params)  {
