@@ -1,9 +1,9 @@
 package main
 
 import (
-	"demo/encript"
-	"encoding/base64"
+	"encoding/json"
 	"fmt"
+	"os"
 	"sync"
 )
 
@@ -36,14 +36,132 @@ type UserCenterParam struct {
 	TransTime string `json:"TransTime"`
 	Data      Data   `json:"data"`
 }
+type aInf interface {
+	Write()
+}
+type aS struct {
+	 Foo  string
+}
+
+func (a  aS) Write() {
+	a.Foo = "wwwww"
+	fmt.Println("Write")
+}
+var data = "hjfklasjflsf567890kjhgfghjkl;56789op[poiuy"
+var countW = 1000000
+
+//3951983000
+//395
+func seekWrite() {
+
+	f , _ :=  os.OpenFile("./seekwrite.txt",os.O_RDWR|os.O_CREATE, 0600)
+	curWritePos := 0
+	for i := 0 ;i <= countW;i++{
+		f.Seek(int64(curWritePos),0)
+		f.WriteString(data)
+		curWritePos += len(data)
+	}
+}
+// 1 000 000
+//3312376000
+//331
+func appendWrite() {
+	f , _ := os.OpenFile("./append.txt", os.O_RDWR | os.O_CREATE |os.O_APPEND,0600)
+	for i := 0 ;i <= countW;i++{
+		f.WriteString(data)
+	}
+}
 
 func main() {
+	resp := "{\"returnCode\":0,\"returnMsg\":\"succ\",\"returnUserMsg\":\"成功\",\"data\":{\"pid\":258248667432026933}}"
 
-	key := "lYMa4WkYHmql2dlW"
-	data := "Wade@2431313"
-	ret :=  encript.EcbEncrypt([]byte(data) , []byte(key))
-	r :=  base64.StdEncoding.EncodeToString(ret)
-	fmt.Println(r)
+	var respObj struct {
+		ReturnCode    int                    `json:"returnCode"`
+		ReturnMsg     string                 `json:"returnMsg"`
+		ReturnUserMsg string                 `json:"returnUserMsg"`
+		Data          map[string]int64 `json:"data"`
+	}
+	json.Unmarshal([]byte(resp), &respObj)
+	fmt.Println(respObj)
+	fmt.Println(respObj.Data["pid"])
+	//dqLogf := func(level diskqueue.LogLevel, f string, args ...interface{}) {
+	//	fmt.Printf(f,args)
+	//}
+	//// backend names, for uniqueness, automatically include the topic...
+	//
+	//backend := diskqueue.New(
+	//	"backendName",
+	//	"./data",
+	//	10000000,
+	//	1,
+	//	100,
+	//	5,
+	//	10,
+	//	dqLogf,
+	//)
+	//for i:=0; i <= 1000 ; i++  {
+	//	err :=  backend.Put([]byte("hello world"))
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	}
+	//	time.Sleep(500 * time.Millisecond)
+	//}
+
+	//t1 := time.Now().UnixNano()
+	//seekWrite()
+	////appendWrite()
+	//t2 := time.Now().UnixNano()
+	//fmt.Println(t2 - t1)
+	//fmt.Println((t2 - t1)/10e6)
+	//var a interface{}
+	//a = false
+	//
+	//if a.(bool) {
+	//	fmt.Println(a)
+	//}
+
+	//pipline := make(chan string)
+	//go func() {
+	//	pipline <- "hello world"
+	//	pipline <- "hello China"
+	//	//close(pipline)
+	//}()
+	//for data := range pipline{
+	//	fmt.Println(data)
+	//}
+
+	//var t aS
+	//var tt  interface{} = t
+	////var a = "string foo"
+	////var b = 9
+	////var c = 'a'
+	//var a aS
+	//a.Foo = "bbb"
+	//fmt.Println(a.Foo)
+	//a.Write()
+	//fmt.Println(a.Foo)
+	//switch tt.(type) {
+	//case aInf:
+	//	fmt.Println("as")
+	//case string:
+	//	fmt.Println("string")
+	//default:
+	//
+	//	fmt.Println("default type")
+	//}
+	//println( reflect.TypeOf(a).String() )
+	//println(reflect.TypeOf(b).String())
+	//println(reflect.TypeOf(c).String())
+
+
+
+
+
+	//key := "lYMa4WkYHmql2dlW"
+	//data := "Wade@2431313"
+	//ret :=  encript.EcbEncrypt([]byte(data) , []byte(key))
+	//r :=  base64.StdEncoding.EncodeToString(ret)
+	//fmt.Println(r)
 
 
 

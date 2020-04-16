@@ -1,5 +1,10 @@
 package common
 
+import (
+	"fmt"
+	"runtime"
+)
+
 var listenerMap = make(map[string][]func( EventInfo))
 
 const EventCommandSuccess = "CommandSuccess"
@@ -18,12 +23,19 @@ type EventInfo struct {
 }
 
 func AddListener(EventType string, callback func( EventInfo)) {
+	a , b , c ,d := runtime.Caller(1)
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(c)
+	fmt.Println(d)
+
 	listenerList := listenerMap[EventType]
 	if len(listenerList) <= 0 {
 		listenerMap[EventType] = []func( EventInfo){}
 	}
 	//每个事件类型是一个列表，可以容纳多个事件
 	listenerMap[EventType] = append(listenerMap[EventType], callback)
+
 }
 
 func CallListener(eventType string, dat interface{}) {

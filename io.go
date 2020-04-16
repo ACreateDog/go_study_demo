@@ -52,7 +52,7 @@ func osOpen() {
 	fd , err :=  os.Open(FileName)
 
 	fmt.Printf("%+v\n" , fd)
-	if err != nil {z
+	if err != nil {
 		fmt.Printf("open is error is %v \n" , err)
 		return
 	}
