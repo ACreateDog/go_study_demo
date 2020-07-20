@@ -3,8 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"git-pd.megvii-inc.com/slg-service/randomWalk/--vendor/gopkg.in/go-playground/validator.v8"
 	"os"
+	"strconv"
 	"sync"
+	"time"
 )
 
 var swg sync.WaitGroup
@@ -41,6 +44,7 @@ type aInf interface {
 }
 type aS struct {
 	 Foo  string
+
 }
 
 func (a  aS) Write() {
@@ -72,18 +76,206 @@ func appendWrite() {
 	}
 }
 
-func main() {
-	resp := "{\"returnCode\":0,\"returnMsg\":\"succ\",\"returnUserMsg\":\"成功\",\"data\":{\"pid\":258248667432026933}}"
+type AI interface {
+	A()
+	B()
+}
+type St struct {
+	Foo string
+}
 
-	var respObj struct {
-		ReturnCode    int                    `json:"returnCode"`
-		ReturnMsg     string                 `json:"returnMsg"`
-		ReturnUserMsg string                 `json:"returnUserMsg"`
-		Data          map[string]int64 `json:"data"`
+func (s *St) A() {
+	//panic("implement me")
+	s.Foo = "hello world"
+}
+
+func (s St) B() {
+	s.Foo = "aaa"
+}
+var parseDisplay struct {
+	TagID                       int    `json:"tagID" validate:"min=1,max=8000"`
+	ColorType                   int    `json:"colorType" validate:"min=0,max=7"`
+	//ColorType                   string    `json:"colorType" validate:"iscolor"`
+	Content                     string `json:"content" validate:"number|lte=0"`
+	//Content                     string `json:"content" validate:"number"`
+	ContentChange               int    `json:"contentChange" validate:"min=0,max=1"`
+	DisplayType                 int    `json:"displayType" validate:"min=1,max=3"`
+	AfterPressConfirmScreenType int    `json:"afterPressConfirmScreenType" validate:"min=1,max=3"`
+}
+func main() {
+	var dat1 Data
+	dat1.Ip = "127.0.0.1"
+	var dat2 Data
+	dat2.Ip = "127.0.0.1"
+
+	fmt.Println(dat1 == dat2)
+
+
+
+	cfg := &validator.Config{
+		TagName:      "validate",
 	}
-	json.Unmarshal([]byte(resp), &respObj)
-	fmt.Println(respObj)
-	fmt.Println(respObj.Data["pid"])
+	jsonStr := `{"tagID":100,"colorType":6,"content":"","contentChange":1,"displayType":2,"afterPressConfirmScreenType":1}`
+	err :=   json.Unmarshal([]byte(jsonStr),&parseDisplay)
+	fmt.Println(err)
+
+	err =  validator.New(cfg).Struct(parseDisplay)
+	if err == nil {
+		return
+	}
+	tmpErr := err.(validator.ValidationErrors)
+	for k ,v := range tmpErr {
+		fmt.Println(k)
+		 fmt.Printf("error=%+v\n",v)
+	}
+	fmt.Println(err)
+	return
+	demoChan := make(chan int , 1)
+	dat := 1
+	demoChan <- 1
+	select {
+	case demoChan<-dat:
+		fmt.Println("can input ")
+	default:
+		fmt.Println("cannot input chan " , dat)
+
+	}
+
+
+	return
+	var thisOne = 1
+	switch thisOne {
+	case  1:
+
+	case 2:
+		fmt.Println("this is two")
+	default:
+		fmt.Println(" this is nothing")
+	}
+
+	return
+	buf := make([]byte, 10000)
+	file, err := os.Open("./data.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	//n, err := io2.ReadFull(file, buf)
+	n ,err :=  file.Read(buf)
+	if err != nil {
+		fmt.Println(n, err.Error())
+	} else {
+		fmt.Println(n)
+	}
+	fmt.Println(string(buf))
+
+	return
+	var ffoo = make(map[string]*Data)
+	
+	fmt.Println( ffoo["a"].Email)
+	//var  aaa byte
+	//aaa = byte(1) + byte(0x30)
+	//fmt.Println(aaa)
+	return
+	var ai AI
+	var st St
+	ai  = &st
+	ai.B()
+	fmt.Println(st.Foo)
+	ai.A()
+	fmt.Println(st.Foo)
+	return
+	aInt := 3
+	fmt.Println(fmt.Sprintf("%03d",aInt))
+	return
+	var fo = []byte{'0','0','3'}
+	fmt.Println(strconv.Atoi(string(fo)))
+	return
+	var foo AI
+
+	foo = nil
+	fmt.Println(foo == nil)
+	return
+	curTime := time.Now()
+	endTime := curTime.Format("2006-01-02 15:04:05")
+	startTime := curTime.AddDate(0 , 0 , -3).Format("2006-01-02 15:04:05")
+
+	fmt.Println(endTime)
+	fmt.Println(startTime)
+	return
+
+
+		var aslice = []string{"a","b","c","d"}
+		fmt.Println(aslice[0:2])
+
+
+		var aa interface{}
+		 aa = ""
+		 //fmt.Println(reflect.ValueOf(aa).IsNil())
+		fmt.Println(aa == "")
+
+		var a map[string]int
+		if  _ , ok := a["a"] ; !ok {
+			fmt.Println("not exist")
+		}
+
+		fmt.Println(len(a))
+
+		f := []Data{ {
+			Email:        "1-111",
+			Password:     "1-222",
+			Token:        "1-333",
+			Authenticate: "1-444",
+			Ip:           "1-555",
+		},
+		 {
+			Email:        "2-111",
+			Password:     "2-222",
+			Token:        "2-333",
+			Authenticate: "2-444",
+			Ip:           "2-555",
+		}}
+		r, _ := json.Marshal(f)
+		fmt.Println(string(r))
+
+	//var foo  = map[string]Data{
+	//	"1": {
+	//		Email:        "1-111",
+	//		Password:     "1-222",
+	//		Token:        "1-333",
+	//		Authenticate: "1-444",
+	//		Ip:           "1-555",
+	//	},
+	//	"2": {
+	//		Email:        "2-111",
+	//		Password:     "2-222",
+	//		Token:        "2-333",
+	//		Authenticate: "2-444",
+	//		Ip:           "2-555",
+	//	},
+	//}
+	//
+	//var tmp = make(map[string]*Data)
+	//for i , v := range foo {
+	//	t := v
+	//	tmp[i] = &t
+	//}
+	//
+	//fmt.Println(tmp)
+
+
+
+	//resp := "{\"returnCode\":0,\"returnMsg\":\"succ\",\"returnUserMsg\":\"成功\",\"data\":{\"pid\":258248667432026933}}"
+	//
+	//var respObj struct {
+	//	ReturnCode    int                    `json:"returnCode"`
+	//	ReturnMsg     string                 `json:"returnMsg"`
+	//	ReturnUserMsg string                 `json:"returnUserMsg"`
+	//	Data          map[string]int64 `json:"data"`
+	//}
+	//json.Unmarshal([]byte(resp), &respObj)
+	//fmt.Println(respObj)
+	//fmt.Println(respObj.Data["pid"])
 	//dqLogf := func(level diskqueue.LogLevel, f string, args ...interface{}) {
 	//	fmt.Printf(f,args)
 	//}
