@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"git-pd.megvii-inc.com/slg-service/randomWalk/--vendor/gopkg.in/go-playground/validator.v8"
 	"os"
 	"strconv"
 	"sync"
@@ -112,23 +111,23 @@ func main() {
 
 
 
-	cfg := &validator.Config{
-		TagName:      "validate",
-	}
-	jsonStr := `{"tagID":100,"colorType":6,"content":"","contentChange":1,"displayType":2,"afterPressConfirmScreenType":1}`
-	err :=   json.Unmarshal([]byte(jsonStr),&parseDisplay)
-	fmt.Println(err)
-
-	err =  validator.New(cfg).Struct(parseDisplay)
-	if err == nil {
-		return
-	}
-	tmpErr := err.(validator.ValidationErrors)
-	for k ,v := range tmpErr {
-		fmt.Println(k)
-		 fmt.Printf("error=%+v\n",v)
-	}
-	fmt.Println(err)
+	//cfg := &validator.Config{
+	//	TagName:      "validate",
+	//}
+	//jsonStr := `{"tagID":100,"colorType":6,"content":"","contentChange":1,"displayType":2,"afterPressConfirmScreenType":1}`
+	//err :=   json.Unmarshal([]byte(jsonStr),&parseDisplay)
+	//fmt.Println(err)
+	//
+	//err =  validator.New(cfg).Struct(parseDisplay)
+	//if err == nil {
+	//	return
+	//}
+	//tmpErr := err.(validator.ValidationErrors)
+	//for k ,v := range tmpErr {
+	//	fmt.Println(k)
+	//	 fmt.Printf("error=%+v\n",v)
+	//}
+	//fmt.Println(err)
 	return
 	demoChan := make(chan int , 1)
 	dat := 1
