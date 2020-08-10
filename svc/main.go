@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/judwhite/go-svc/svc"
 	"log"
+	"sort"
 	"syscall"
 	"time"
 )
@@ -38,6 +39,10 @@ func (this *program) Stop() error {
 }
 
 func main() {
+	var tmp = []string{"a","b","c","0","1","2"}
+	sort.Strings(tmp)
+	fmt.Println(tmp)
+	return
 	p := &program{}
 	if err :=  svc.Run(p , syscall.SIGUSR1, syscall.SIGINT, syscall.SIGTERM , syscall.SIGTERM,syscall.SIGKILL,syscall.SIGTSTP) ; err != nil {
 		log.Fatal(err)
