@@ -95,9 +95,12 @@ func lengthOfLongestSubstring(s string) int { //双指针滑动窗口
 	return max
 }
 func main() {
-	var str = "aab"
-	fmt.Println(lengthOfLongestSubstring(str))
-
+	//var str = "aab"
+	//fmt.Println(lengthOfLongestSubstring(str))
+	t := time.Now().UnixNano()
+	time.Sleep(1 * time.Second)
+	t2 :=  time.Now().UnixNano()
+	fmt.Println((t2 - t)/1e6)
 	return
 	p := &program{}
 	if err := svc.Run(p, syscall.SIGUSR1, syscall.SIGINT, syscall.SIGTERM, syscall.SIGTERM, syscall.SIGKILL, syscall.SIGTSTP); err != nil {
