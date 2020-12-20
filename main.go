@@ -2,24 +2,53 @@ package main
 
 import (
 	"fmt"
+	"github.com/siddontang/go-mysql/replication"
+
+	//"github.com/siddontang/go-mysql/replication"
 	"time"
 )
 
-var ch  = make(chan int,1)
 
-type AI interface {
-	DD()
-}
 
+//type AI interface {
+//	DD()
+//}
+//var ch  = make(chan int )
 func main() {
-
-	var foo AI
-
-	fmt.Println(foo == nil)
-
-
+	var t time.Time
+	fmt.Println(t.UnixNano())
 	return
-	fmt.Println(time.Now().Format("2006_01_02_15_04_05.000"))
+
+	cfg := replication.BinlogSyncerConfig{
+		ServerID:100,
+		Flavor:"mysql",
+		Host:"127.0.0.1",
+		Port:3306,
+		User:"root",
+		Password:"1234567890///",
+	}
+	syncer := replication.NewBinlogSyncer(cfg)
+	syncer.Close()
+	return
+	//t := time.NewTimer(1 * time.Second)
+	//go func() {
+	//	time.Sleep(10 * time.Second)
+	//	//t.Stop()
+	//}()
+	//for range t.C {
+	//	fmt.Println("ticker ...")
+	//	t.Reset(1 * time.Second)
+	//}
+	//fd, err :=  os.Open("/Users/wangfei/Downloads/tmp.log")
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//fmt.Println(fd)
+	//fmt.Println(os.Getpid())
+	//time.Sleep(1000 * time.Second)
+	//return
+
 	//ctx , cancel  := context.WithCancel(context.Background())
 	//go func(c context.Context) {
 	//
@@ -57,33 +86,33 @@ func main() {
 	//	cancel()
 	//}()
 	//
-	go func(ch chan int) {
-		select {
-		case msg := <-ch:
-			fmt.Println("get msg one msg = ", msg)
-			return
-		}
-	}(ch)
-	go func(ch chan int) {
-		select {
-		case msg := <-ch:
-			fmt.Println("get msg three msg = ", msg)
-			return
-		}
-	}(ch)
-	go func(ch chan int) {
-		select {
-		case msg := <-ch:
-			fmt.Println("get msg tow msg = ", msg)
-			return
-		}
-	}(ch)
-	go func(ch chan int) {
-		time.Sleep(2 * time.Second)
-		close(ch)
-	}(ch)
-
-	time.Sleep(1000 * time.Second)
+	//go func(ch chan int) {
+	//	select {
+	//	case msg := <-ch:
+	//		fmt.Println("get msg one msg = ", msg)
+	//		return
+	//	}
+	//}(ch)
+	//go func(ch chan int) {
+	//	select {
+	//	case msg := <-ch:
+	//		fmt.Println("get msg three msg = ", msg)
+	//		return
+	//	}
+	//}(ch)
+	//go func(ch chan int) {
+	//	select {
+	//	case msg := <-ch:
+	//		fmt.Println("get msg tow msg = ", msg)
+	//		return
+	//	}
+	//}(ch)
+	//go func(ch chan int) {
+	//	time.Sleep(2 * time.Second)
+	//	close(ch)
+	//}(ch)
+	//
+	//time.Sleep(1000 * time.Second)
 
 }
 

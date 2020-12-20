@@ -10,6 +10,7 @@ require (
 	github.com/onsi/ginkgo v1.14.2 // indirect
 	github.com/onsi/gomega v1.10.3 // indirect
 	github.com/siddontang/go-log v0.0.0-20190221022429-1e957dd83bed
+	github.com/siddontang/go-mysql v1.1.0 // indirect
 	github.com/streadway/amqp v1.0.0
 	github.com/wangfeiso/rwlock v0.0.0-20200824113424-757d304a4783
 	github.com/withlin/canal-go v1.0.10
