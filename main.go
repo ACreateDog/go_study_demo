@@ -2,34 +2,42 @@ package main
 
 import (
 	"fmt"
-	"github.com/siddontang/go-mysql/replication"
+	"math"
 
 	//"github.com/siddontang/go-mysql/replication"
 	"time"
 )
 
 
-
+func IsAngleEqualForSlam(a1, a2 float64) bool {
+	d := math.Abs(a1 - a2)
+	return d < math.Pi/2000
+}
 //type AI interface {
-//	DD()
+//	DD()r
 //}
 //var ch  = make(chan int )
 func main() {
+	var a float32 = 0.0
+	var tmp uint8
+	tmp = uint8(a)
+	fmt.Println(tmp)
+	return
 	var t time.Time
 	fmt.Println(t.UnixNano())
 	return
 
-	cfg := replication.BinlogSyncerConfig{
-		ServerID:100,
-		Flavor:"mysql",
-		Host:"127.0.0.1",
-		Port:3306,
-		User:"root",
-		Password:"1234567890///",
-	}
-	syncer := replication.NewBinlogSyncer(cfg)
-	syncer.Close()
-	return
+	//cfg := replication.BinlogSyncerConfig{
+	//	ServerID:100,
+	//	Flavor:"mysql",
+	//	Host:"127.0.0.1",
+	//	Port:3306,
+	//	User:"root",
+	//	Password:"1234567890///",
+	//}
+	//syncer := replication.NewBinlogSyncer(cfg)
+	//syncer.Close()
+	//return
 	//t := time.NewTimer(1 * time.Second)
 	//go func() {
 	//	time.Sleep(10 * time.Second)
