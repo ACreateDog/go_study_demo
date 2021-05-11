@@ -10,6 +10,7 @@ require (
 	github.com/nsqio/go-nsq v1.0.8
 	github.com/onsi/ginkgo v1.14.2 // indirect
 	github.com/onsi/gomega v1.10.3 // indirect
+	github.com/reactivex/rxgo/v2 v2.5.0 // indirect
 	github.com/siddontang/go-log v0.0.0-20190221022429-1e957dd83bed
 	github.com/siddontang/go-mysql v1.1.0
 	github.com/streadway/amqp v1.0.0
