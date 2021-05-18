@@ -15,11 +15,22 @@ github.com/aymerick/raymond
 github.com/aymerick/raymond/ast
 github.com/aymerick/raymond/lexer
 github.com/aymerick/raymond/parser
+# github.com/cenkalti/backoff/v4 v4.0.0
+github.com/cenkalti/backoff/v4
 # github.com/chris-ramon/douceur v0.2.0
 github.com/chris-ramon/douceur/parser
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
 # github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385
 github.com/eknkc/amber
 github.com/eknkc/amber/parser
+# github.com/emirpasic/gods v1.12.0
+github.com/emirpasic/gods/containers
+github.com/emirpasic/gods/lists
+github.com/emirpasic/gods/lists/arraylist
+github.com/emirpasic/gods/trees
+github.com/emirpasic/gods/trees/binaryheap
+github.com/emirpasic/gods/utils
 # github.com/fatih/structs v1.1.0
 github.com/fatih/structs
 # github.com/flosch/pongo2/v4 v4.0.1
@@ -125,36 +136,33 @@ github.com/nsqio/go-nsq
 ## explicit
 # github.com/onsi/gomega v1.10.3
 ## explicit
-# github.com/pingcap/errors v0.11.0
-github.com/pingcap/errors
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/reactivex/rxgo/v2 v2.5.0
+## explicit
+github.com/reactivex/rxgo/v2
 # github.com/russross/blackfriday/v2 v2.1.0
 github.com/russross/blackfriday/v2
 # github.com/samuel/go-zookeeper v0.0.0-20180130194729-c4fab1ac1bec
 github.com/samuel/go-zookeeper/zk
-# github.com/satori/go.uuid v1.2.0
-github.com/satori/go.uuid
 # github.com/schollz/closestmatch v2.1.0+incompatible
 github.com/schollz/closestmatch
-# github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24
-github.com/shopspring/decimal
-# github.com/siddontang/go v0.0.0-20180604090527-bdc77568d726
-github.com/siddontang/go/hack
 # github.com/siddontang/go-log v0.0.0-20190221022429-1e957dd83bed
 ## explicit
 github.com/siddontang/go-log/log
 github.com/siddontang/go-log/loggers
 # github.com/siddontang/go-mysql v1.1.0
 ## explicit
-github.com/siddontang/go-mysql/client
-github.com/siddontang/go-mysql/mysql
-github.com/siddontang/go-mysql/packet
-github.com/siddontang/go-mysql/replication
-github.com/siddontang/go-mysql/utils
 # github.com/sony/sonyflake v1.0.0
 github.com/sony/sonyflake
 # github.com/streadway/amqp v1.0.0
 ## explicit
 github.com/streadway/amqp
+# github.com/stretchr/objx v0.1.1
+github.com/stretchr/objx
+# github.com/stretchr/testify v1.6.1
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/mock
 # github.com/tdewolff/minify/v2 v2.9.10
 github.com/tdewolff/minify/v2
 github.com/tdewolff/minify/v2/css
@@ -172,6 +180,8 @@ github.com/tdewolff/parse/v2/js
 github.com/tdewolff/parse/v2/json
 github.com/tdewolff/parse/v2/strconv
 github.com/tdewolff/parse/v2/xml
+# github.com/teivah/onecontext v0.0.0-20200513185103-40f981bfd775
+github.com/teivah/onecontext
 # github.com/valyala/bytebufferpool v1.0.0
 github.com/valyala/bytebufferpool
 # github.com/vmihailenco/msgpack/v5 v5.0.0
